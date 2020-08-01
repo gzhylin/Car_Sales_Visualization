@@ -4,6 +4,7 @@
 <head>
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 <style>
 div.static {
   position: static;
@@ -88,6 +89,7 @@ to explore data on your own!
 <div class = "c">George Zhylin | July 2020 | UIUC STAT 420 </div>
 
 <script>
+
 var one = 0;
 
 function startTime() {
@@ -185,6 +187,17 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
         .attr("height", function(d) { return height - y(d.length); })
         .style("fill", "#6272a4")
 
+svg.append('line')
+  .attr('x1', 150)
+  .attr('y1', 200)
+  .attr('x2', 600)
+  .attr('y2', 30)
+  .attr('stroke', 'red')
+svg.append("text").attr("x", 630).attr("y", 30).text("Average Car Price").style("font-size", "17px")
+
+
+
+
 });
 </script>
 
@@ -262,6 +275,15 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
     .attr("cy", function (d) { return y2(d.mileage); } )
 	.attr("size", "29")
     .attr("r", 4)
+
+svg2.append('line')
+  .attr('x1', 170)
+  .attr('y1', 350)
+  .attr('x2', 600)
+  .attr('y2', 30)
+  .attr('stroke', 'red')
+svg2.append("text").attr("x", 630).attr("y", 30).text("Average Mileage & Price").style("font-size", "17px")
+
 
 })
 
