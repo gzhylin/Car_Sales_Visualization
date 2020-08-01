@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <meta charset="utf-8">
 <html>
 <head>
@@ -35,6 +34,10 @@ r {text-align: right;}
 </style>
 </head>
 <body>
+<!-- hitwebcounter Code START -->
+Page Views: <a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7552026&style=0007&nbdigits=4&type=page&initCount=0" title="Web Counter" Alt="counter free"   border="0" >
+</a>         
 <div id="time"></div>
 <button onclick="myFunction()">Dark Mode</button>
 <h1><p style="font-family:Helvetica;">CAR BUYING GUIDE</p></h1>
@@ -61,37 +64,31 @@ Car Price relative to the Car mileage. This Visualization helps us understand th
 between car mileage and the price. According to the data represented here, most of the used cars 
 are sold between 15000 and 50000 miles. This information helps to understand your bet options when 
 shopping for a used car.
-
 <button onClick="document.getElementById('div3').scrollIntoView();">Next Visualization</button>
 </p></div></div>
 <div class="center">
 <h3><p style="font-family:Helvetica;">Car Price Relative to Car Mileage</p></h3>
 <div id="my_dataviz2"></div>
 </div>
-
 <div id="div3" style="visibility: hidden"><div class="center2"><p style="font-family:Helvetica;">  
 Finally, in the Free Exploration Plot bellow you can Zoom and find very interesting details about 
 each car for sale. This plot provides details on demand and you can zoom with mouse wheel to filter 
-data. Each bubble represents one car and bubble color represents actual car color. Please feel free
-to explore 
+data. Each bubble represents one car and bubble color represents actual car color. Ple
 </p></div></div>
-
 <div class="center">
 <h3><p style="font-family:Helvetica;">Car Price Relative to Car Mileage</p></h3>
 <div id="my_dataviz3"></div>
 </div>
-
-
 <br>
 <br>
 <br>
 <br>
 <br>
 <div class = "c">George Zhylin | July 2020 | UIUC STAT 420 </div>
+
 <script>
-
-
 var one = 0;
+
 function startTime() {
   one = one + 1;
   document.getElementById('time').innerHTML = "Time Spent: " + one + " Seconds." ;
@@ -114,14 +111,12 @@ function showIt3() {
 }
 setTimeout("showIt3()", 8000); // after 1 sec
 
-
-
 function myFunction() {
    var element = document.body;
    element.classList.toggle("dark-mode");
 }
 
-// set the dimensions and margins of the graph
+// set margins of the graph
 var margin = {top: 10, right: 100, bottom: 60, left: 100},
     width = 1000 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -134,34 +129,29 @@ var margin = {top: 10, right: 100, bottom: 60, left: 100},
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")")
 
-
-
-
 //Read the data
 d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualization/master/cars.csv", function(data) {
 
-
- // X axis: scale and draw:
+ // X axis
   var x = d3.scaleLinear()
-      .domain([0, 70000])     // can use this instead of 1000 to have the max of data: d3.max(data, function(d) { return +d.price })
+      .domain([0, 70000])    
       .range([0, width]);
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
-  // set the parameters for the histogram
   var histogram = d3.histogram()
-      .value(function(d) { return d.price; })   // I need to give the vector of value
-      .domain(x.domain())  // then the domain of the graphic
-      .thresholds(x.ticks(50)); // then the numbers of bins
+      .value(function(d) { return d.price; })  
+      .domain(x.domain()) 
+      .thresholds(x.ticks(50));
 
-  // And apply this function to data to get the bins
+
   var bins = histogram(data);
 
-  // Y axis: scale and draw:
+  // Y axis
   var y = d3.scaleLinear()
       .range([height, 0]);
-      y.domain([0, d3.max(bins, function(d) { return d.length; })]);   // d3.hist has to be called before the Y axis obviously
+      y.domain([0, d3.max(bins, function(d) { return d.length; })]);   
       svg.append("g")
       .call(d3.axisLeft(y));
 
@@ -194,22 +184,11 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
         .attr("height", function(d) { return height - y(d.length); })
         .style("fill", "#6272a4")
 
-
-
-
-d3.select("#circleCustomTooltip")
-  .on("mouseover", function(){return tooltip2.style("visibility", "visible");})
-  .on("mousemove", function(){return tooltip2.style("top", (event.pageY-2390)+"px").style("left",(event.pageX-800)+"px");})
-  .on("mouseout", function(){return tooltip2.style("visibility", "hidden");});
-
 });
 </script>
 
-
-
 <script>
 
-// set the dimensions and margins of the graph
 var margin2 = {top: 30, right: 100, bottom: 60, left: 100},
     width2 = 1000 - margin2.left - margin2.right,
     height2 = 500 - margin2.top - margin2.bottom;
@@ -222,14 +201,9 @@ var margin2 = {top: 30, right: 100, bottom: 60, left: 100},
         .attr("transform",
               "translate(" + margin2.left + "," + margin2.top + ")")
 
-
-
-
 //Read the data
 d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualization/master/cars.csv", function(data) {
 
-
-  // Add X axis
   var x2 = d3.scaleLinear()
     .domain([0, 0])
     .range([ 0, width2 ]);
@@ -239,14 +213,12 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
     .call(d3.axisBottom(x2))
     .attr("opacity", "0")
 
-  // Add Y axis
   var y2 = d3.scaleLinear()
     .domain([0, 200000])
     .range([ height2, 0]);
   svg2.append("g")
     .call(d3.axisLeft(y2));
 
-  // X label price
   svg2.append("text")
     .attr("class", "x label")
     .attr("text-anchor", "end")
@@ -254,17 +226,6 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
     .attr("y", height + 20)
     .text("Car Price (In US dollars)");
 
-
-
-
-
-
-
-
-
-
-
-  // Y label Frequency 
   svg2.append("text")
     .attr("class", "y label")
     .attr("text-anchor", "end")
@@ -292,9 +253,6 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
     .attr("opacity", "1")
     .call(d3.axisBottom(x2));
 
-
-
-
   svg2.selectAll("circle")
     .transition()
     .delay(function(d,i){return(i*3)})
@@ -304,26 +262,16 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
 	.attr("size", "29")
     .attr("r", 4)
 
-
-
-
-
-
-
-
 })
 
 </script>
 
-
 <script>
 
-// set the dimensions and margins of the graph
 var margin3 = {top: 10, right: 100, bottom: 60, left: 100},
     width3 = 1000 - margin3.left - margin3.right,
     height3 = 500 - margin3.top - margin3.bottom;
-    // append the svg object to the body of the page
-// append the SVG object to the body of the page
+
 var svg3 = d3.select("#my_dataviz3")
   .append("svg")
     .attr("width", width3 + margin3.left + margin3.right)
@@ -335,15 +283,8 @@ var svg3 = d3.select("#my_dataviz3")
     .attr("transform",
           "translate(" + margin3.left + "," + margin3.top + ")");
 
-
-
-
 //Read the data
 d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualization/master/cars.csv", function(data) {
-
-  // ---------------------------//
-  //       AXIS  AND SCALE      //
-  // ---------------------------//
 
   // Add X axis
   var x3 = d3.scaleLinear()
@@ -361,16 +302,6 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
     .attr("y", height + 40)
     .text("Car Price (In US dollars)");
 
-
-
-
-
-
-
-
-
-
-
   // Y label Frequency 
   svg3.append("text")
     .attr("class", "y label")
@@ -387,25 +318,14 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
   svg3.append("g")
     .call(d3.axisLeft(y3));
 
-
-
-
   // Add a scale for bubble color
   var myColor = d3.scaleOrdinal()
-    .domain(["Asia", "Europe", "Americas", "Africa", "Oceania"])
     .range(d3.schemeSet1);
 
+	svg3.append("circle").attr("cx",600).attr("cy",30).attr("r", 6).style("fill", "#404080")
+	svg3.append("text").attr("x", 630).attr("y", 30).text("Bubble Color Represents Car Color").style("font-size", "17px").attr("alignment-baseline","middle")
+	svg3.append("text").attr("x", 640).attr("y", 60).text("Please zoom with mouse wheel.").style("font-size", "15px").attr("alignment-baseline","middle")
 
-svg3.append("circle").attr("cx",600).attr("cy",30).attr("r", 6).style("fill", "#404080")
-svg3.append("text").attr("x", 630).attr("y", 30).text("Bubble Color Represents Car Color").style("font-size", "17px").attr("alignment-baseline","middle")
-svg3.append("text").attr("x", 640).attr("y", 60).text("Please zoom with mouse wheel.").style("font-size", "15px").attr("alignment-baseline","middle")
-
-
-  // ---------------------------//
-  //      TOOLTIP               //
-  // ---------------------------//
-
-  // -1- Create a tooltip div that is hidden by default:
   var tooltip = d3.select("#my_dataviz3")
     .append("div")
       .style("opacity", 0)
@@ -415,7 +335,6 @@ svg3.append("text").attr("x", 640).attr("y", 60).text("Please zoom with mouse wh
       .style("padding", "10px")
       .style("color", "white")
 
-  // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
   var showTooltip = function(d) {
     tooltip
       .transition()
@@ -429,46 +348,16 @@ svg3.append("text").attr("x", 640).attr("y", 60).text("Please zoom with mouse wh
 		  + ", Mileage: " + d.mileage 
 		  + ", Color: " + d.color 
 		  + ", State: " + d.state )
-
-
-
       .style("left", "100px")
       .style("top", "100px")
   }
- // var moveTooltip = function(d) {
- //   tooltip
- //     .style("left", (d3.mouse(this)[0]+30) + "px")
- //     .style("top", (d3.mouse(this)[1]+30) + "px")
- // }
+
   var hideTooltip = function(d) {
     tooltip
       .transition()
       .duration(200)
       .style("opacity", 0)
   }
-
-
-  // ---------------------------//
-  //       HIGHLIGHT GROUP      //
-  // ---------------------------//
-
-  // What to do when one group is hovered
-  var highlight = function(d){
-    // reduce opacity of all groups
-    d3.selectAll(".bubbles").style("opacity", .05)
-    // expect the one that is hovered
-    d3.selectAll("."+d).style("opacity", 1)
-  }
-
-  // And when it is not hovered anymore
-  var noHighlight = function(d){
-    d3.selectAll(".bubbles").style("opacity", 1)
-  }
-
-
-  // ---------------------------//
-  //       CIRCLES              //
-  // ---------------------------//
 
   // Add dots
   svg3.append('g')
@@ -481,91 +370,11 @@ svg3.append("text").attr("x", 640).attr("y", 60).text("Please zoom with mouse wh
       .attr("cy", function (d) { return y3(d.mileage); } )
       .attr("r", 5)
       .style("fill", function (d) { return myColor(d.color); } )
-    // -3- Trigger the functions for hover
+
     .on("mouseover", showTooltip )
-    .on("mousemove", moveTooltip )
+
     .on("mouseleave", hideTooltip )
 
-
-
-    // ---------------------------//
-    //       LEGEND              //
-    // ---------------------------//
-
-    // Add legend: circles
-    var valuesToShow = [10000000, 100000000, 1000000000]
-    var xCircle = 390
-    var xLabel = 440
-    svg3
-      .selectAll("legend")
-      .data(valuesToShow)
-      .enter()
-      .append("circle")
-        .attr("cx", xCircle)
-        .attr("cy", function(d){ return height - 100 - z(d) } )
-        .attr("r", function(d){ return z(d) })
-        .style("fill", "none")
-        .attr("stroke", "black")
-
-    // Add legend: segments
-    svg3
-      .selectAll("legend")
-      .data(valuesToShow)
-      .enter()
-      .append("line")
-        .attr('x1', function(d){ return xCircle + z(d) } )
-        .attr('x2', xLabel)
-        .attr('y1', function(d){ return height - 100 - z(d) } )
-        .attr('y2', function(d){ return height - 100 - z(d) } )
-        .attr('stroke', 'black')
-        .style('stroke-dasharray', ('2,2'))
-
-    // Add legend: labels
-    svg3
-      .selectAll("legend")
-      .data(valuesToShow)
-      .enter()
-      .append("text")
-        .attr('x', xLabel)
-        .attr('y', function(d){ return height - 100 - z(d) } )
-        .text( function(d){ return d/1000000 } )
-        .style("font-size", 10)
-        .attr('alignment-baseline', 'middle')
-
-    // Legend title
-    svg3.append("text")
-      .attr('x', xCircle)
-      .attr("y", height - 100 +30)
-      .text("Population (M)")
-      .attr("text-anchor", "middle")
-
-    // Add one dot in the legend for each name.
-    var size = 20
-    var allgroups = ["Asia", "Europe", "Americas", "Africa", "Oceania"]
-    svg3.selectAll("myrect")
-      .data(allgroups)
-      .enter()
-      .append("circle")
-        .attr("cx", 390)
-        .attr("cy", function(d,i){ return 10 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("r", 7)
-        .style("fill", function(d){ return myColor(d)})
-        .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
-
-    // Add labels beside legend dots
-    svg3.selectAll("mylabels")
-      .data(allgroups)
-      .enter()
-      .append("text")
-        .attr("x", 390 + size*.8)
-        .attr("y", function(d,i){ return i * (size + 5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
-        .style("fill", function(d){ return myColor(d)})
-        .text(function(d){ return d})
-        .attr("text-anchor", "left")
-        .style("alignment-baseline", "middle")
-        .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
   })
 </script>
 
