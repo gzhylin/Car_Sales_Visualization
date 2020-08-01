@@ -78,7 +78,7 @@ data. Each bubble represents one car and bubble color represents actual car colo
 to explore data on your own!
 </p></div></div>
 <div class="center">
-<h3><p style="font-family:Helvetica;">Car Price Relative to Car Mileage</p></h3>
+<h3><p style="font-family:Helvetica;">Car Price Relative to Car Year</p></h3>
 <div id="my_dataviz3"></div>
 </div>
 <br>
@@ -311,7 +311,7 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
 
   // Add X axis
   var x3 = d3.scaleLinear()
-    .domain([0, 100000])
+    .domain([0, 70000])
     .range([ 0, width3 ]);
   svg3.append("g")
     .attr("transform", "translate(0," + height3 + ")")
@@ -332,22 +332,23 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
     .attr("y", -50)
     .attr("x", -130)
     .attr("transform", "rotate(-90)")
-    .text("Car MIleage");
+    .text("Car Year");
 
   // Add Y axis
   var y3 = d3.scaleLinear()
-    .domain([0, 200000])
+    .domain([2000, 2020])
     .range([ height3, 0]);
   svg3.append("g")
-    .call(d3.axisLeft(y3));
+    .call(d3.axisLeft(y3))
+   .call(d3.axisLeft(y3).ticks(20));
 
   // Add a scale for bubble color
   var myColor = d3.scaleOrdinal()
     .range(d3.schemeSet1);
 
-	svg3.append("circle").attr("cx",600).attr("cy",30).attr("r", 6).style("fill", "#404080")
-	svg3.append("text").attr("x", 630).attr("y", 30).text("Bubble Color Represents Car Color").style("font-size", "17px").attr("alignment-baseline","middle")
-	svg3.append("text").attr("x", 640).attr("y", 60).text("Please zoom with mouse wheel.").style("font-size", "15px").attr("alignment-baseline","middle")
+	svg3.append("circle").attr("cx",600).attr("cy",330).attr("r", 6).style("fill", "#404080")
+	svg3.append("text").attr("x", 630).attr("y", 330).text("Bubble Color Represents Car Color").style("font-size", "17px").attr("alignment-baseline","middle")
+	svg3.append("text").attr("x", 640).attr("y", 360).text("Please zoom with mouse wheel.").style("font-size", "15px").attr("alignment-baseline","middle")
 
   var tooltip = d3.select("#my_dataviz3")
     .append("div")
@@ -390,7 +391,7 @@ d3.csv("https://raw.githubusercontent.com/gzhylin/Nutrition-Narrative-Visualizat
     .append("circle")
       .attr("class", function(d) { return "bubbles " + d.mileage })
       .attr("cx", function (d) { return x3(d.price); } )
-      .attr("cy", function (d) { return y3(d.mileage); } )
+      .attr("cy", function (d) { return y3(d.year); } )
       .attr("r", 5)
       .style("fill", function (d) { return myColor(d.color); } )
 
